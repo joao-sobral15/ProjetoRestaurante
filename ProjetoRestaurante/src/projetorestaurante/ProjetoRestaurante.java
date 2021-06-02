@@ -15,37 +15,43 @@ import java.io.IOException;
  * @author User
  */
 public class ProjetoRestaurante {
-      /*ArrayList<Prato> prato = new ArrayList<Prato>();
-        Prato prato2 = new Prato("Prato1",5,5,"desc");*/
-    
+   
     public static void clearScreen() 
     {  
-
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
-
     }
     
-    public static void Produtos()
+    public static void criaProdutos()
     {
-        String nome;
-        System.out.println("CATEGORIA DO PRODUTO A INSERIR:");
-        Scanner sc = new Scanner(System.in);
-        nome = sc.next();
-        System.out.println(nome);
+        ArrayList<Prato> produtos = new ArrayList<Prato>();
+        ArrayList<Bebida> bebida = new ArrayList<Bebida>();
+
+        Prato bife = new Prato("bife", 9,"Com molho");
+        produtos.add(bife);
+        Prato lasanha = new Prato("lasanha", 8,"sem molho");
+        produtos.add(lasanha);
         
+        Bebida cocaCola = new Bebida("Coca-Cola", 1,3,true);
+        bebida.add(cocaCola);
+        Bebida agua = new Bebida("Agua", 0.50,3,false);
+        bebida.add(agua);
+        
+        System.out.println(produtos.toString());
+        System.out.println(bebida.toString());
     }
+    
     
     public static void ShowMenu()
     {
          int opcao = 0;
 	do {
             clearScreen();
-		System.out.println("\n\n### GESTÃO DO RESTAURANTE ###");
+		System.out.println("\n\n###             GESTÃO DO RESTAURANTE ###");
 		System.out.println("\n                  =========================");
 		System.out.println("                  | 1 - Produtos                    |");
                 System.out.println("                  | 2 - Solicitação de mesa         |");
-		System.out.println("                  | 3 - Adicionar Items a um pedid  |");
+		System.out.println("                  | 3 - Adicionar Items a um pedido  |");
 		System.out.println("                    4 - Estado Pedido               |");
 		System.out.println("                    5 - Fechar Pedido               |");
 		System.out.println("                  | 6 - Cliente                     |");
@@ -59,7 +65,8 @@ public class ProjetoRestaurante {
 		switch (opcao) {
 		case 1:
                     clearScreen();
-                        Produtos();
+                        //Produtos();
+                    criaProdutos();
 			break;
 		case 2:
 			break;

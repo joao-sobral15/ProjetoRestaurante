@@ -12,10 +12,9 @@ package projetorestaurante;
 public class Produto {
    
     private String nomeProduto;
-    private float preco;
-    private float iva;
+    private double preco;
     
-    public Produto(String nomeProduto, float preco, float iva)
+    public Produto(String nomeProduto, double preco)
     {
         if (nomeProduto == "")
         {
@@ -26,15 +25,8 @@ public class Produto {
             this.nomeProduto = nomeProduto;
         }
         
-        if(iva>0)
-        {
-            this.iva = iva;
-        }
+            this.preco = preco;
         
-        if(preco >0)
-        {
-            this.preco = preco*this.iva;
-        }
     }
 
     public String getNomeProduto() {
@@ -45,20 +37,12 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
     public void setPreco(float preco) {
         this.preco = preco;
-    }
-
-    public float getIva() {
-        return iva;
-    }
-
-    public void setIva(float iva) {
-        this.iva = iva;
     }
 
     @Override
@@ -67,12 +51,9 @@ public class Produto {
         String informacao = "";
         
         informacao += "Nome do Produto:"+nomeProduto+"\n";
-        informacao += "Preço:"+preco;
-        informacao += "IVA:"+iva;
+        informacao += "Preço:"+preco+"\n";
+        informacao += "\n";
         
         return informacao;
     }
-    
-   
-    
 }

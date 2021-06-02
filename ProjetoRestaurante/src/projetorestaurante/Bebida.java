@@ -14,8 +14,8 @@ public class Bebida extends Produto {
     private float capacidade;
     private boolean referencia;
     
-    public Bebida(String nomeProduto, float preco, float iva, float capacidade, boolean referencia) {
-        super(nomeProduto, preco, iva);
+    public Bebida(String nomeProduto, double preco, float capacidade, boolean referencia) {
+        super(nomeProduto, preco);
         
         if(capacidade > 0){
             this.capacidade = capacidade;
@@ -45,15 +45,18 @@ public class Bebida extends Produto {
 
     @Override
     public String toString() {
-        super.toString();
+      
         String informacao = "";
         
-        informacao += "Capacidade:"+capacidade;
-        informacao += "Referencia"+referencia;
+        informacao +=   super.toString() +"\n";
+        informacao += "Capacidade:"+capacidade +"\n";
+        informacao += "Referencia"+referencia+ "\n";
         
         return informacao;
     }
     
+    
+  
     
     
     

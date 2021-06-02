@@ -15,7 +15,7 @@ public class Doce extends Produto {
     private boolean caseiro;
     
     public Doce(String nomeProduto, float preco, float iva, String descricao, boolean caseiro) {
-        super(nomeProduto, preco, iva);
+        super(nomeProduto, preco);
         
         if(descricao != null){
             this.descricao = descricao;

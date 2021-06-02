@@ -5,16 +5,20 @@
  */
 package projetorestaurante;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author danie
  */
 public class Prato extends Produto {
-    
+   
+    ArrayList<Prato> produtos = new ArrayList<>();
     private String descricao;
-    
-    public Prato(String nomeProduto, float preco, float iva, String descricao) {
-        super(nomeProduto, preco, iva);
+   
+    public Prato(String nomeProduto, double preco, String descricao) {
+        super(nomeProduto, preco);
         if(descricao != null){
             this.descricao = descricao;
         }
@@ -30,7 +34,7 @@ public class Prato extends Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
     @Override
     public String toString() {
         String informacao ="";
@@ -47,7 +51,7 @@ public class Prato extends Produto {
         
         return informacao;
     }
-    
+      
     
     
     

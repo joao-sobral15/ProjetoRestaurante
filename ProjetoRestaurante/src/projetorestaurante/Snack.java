@@ -15,7 +15,7 @@ public class Snack extends Produto {
     private boolean picante;
     
     public Snack(String nomeProduto, float preco, float iva, int quantidade, boolean picante) {
-        super(nomeProduto, preco, iva);
+        super(nomeProduto, preco);
         this.quantidade = quantidade;
         this.picante = picante;
     }
