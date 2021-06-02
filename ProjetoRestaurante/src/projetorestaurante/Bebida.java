@@ -24,9 +24,7 @@ public class Bebida extends Produto {
         {
             this.capacidade = 0;
         }
-        
         this.referencia = referencia;
-        
     }
 
     public float getCapacidade() {
@@ -44,6 +42,18 @@ public class Bebida extends Produto {
     public void setReferencia(boolean referencia) {
         this.referencia = referencia;
     }
+
+    @Override
+    public String toString() {
+        super.toString();
+        String informacao = "";
+        
+        informacao += "Capacidade:"+capacidade;
+        informacao += "Referencia"+referencia;
+        
+        return informacao;
+    }
+    
     
     
     

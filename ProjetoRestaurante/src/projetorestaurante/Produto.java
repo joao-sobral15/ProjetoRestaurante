@@ -60,7 +60,19 @@ public class Produto {
     public void setIva(float iva) {
         this.iva = iva;
     }
-    
-    
 
+    @Override
+    public String toString() {
+        
+        String informacao = "";
+        
+        informacao += "Nome do Produto:"+nomeProduto+"\n";
+        informacao += "Preço:"+preco;
+        informacao += "IVA:"+iva;
+        
+        return informacao;
+    }
+    
+   
+    
 }

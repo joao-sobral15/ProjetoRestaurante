@@ -15,7 +15,6 @@ public class Prato extends Produto {
     
     public Prato(String nomeProduto, float preco, float iva, String descricao) {
         super(nomeProduto, preco, iva);
-        
         if(descricao != null){
             this.descricao = descricao;
         }
@@ -31,6 +30,26 @@ public class Prato extends Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        String informacao ="";
+        
+        super.toString();
+        if(descricao != "")
+        {
+           informacao += "Descricao do Produto:"+descricao;
+        }
+        else 
+        {
+            informacao += "Descricao do Produto: Sem descricao";
+        }
+        
+        return informacao;
+    }
+    
+    
+    
     
     
     

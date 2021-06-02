@@ -16,8 +16,43 @@ public class Snack extends Produto {
     
     public Snack(String nomeProduto, float preco, float iva, int quantidade, boolean picante) {
         super(nomeProduto, preco, iva);
-        
-        
+        this.quantidade = quantidade;
+        this.picante = picante;
     }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public boolean isPicante() {
+        return picante;
+    }
+
+    public void setPicante(boolean picante) {
+        this.picante = picante;
+    }
+    
+       @Override
+    public String toString() {
+        super.toString();
+        String informacao = "";
+        
+        informacao += "Quantidade:"+quantidade;
+        if(picante == false)
+        {
+            informacao += "Não picante";
+        }
+        else 
+        {
+            informacao +="Picante";
+        }
+        
+        return informacao;
+    }
+    
     
 }

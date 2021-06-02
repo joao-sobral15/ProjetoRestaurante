@@ -18,7 +18,7 @@ public class Pedido {
     
     
 
-    public Pedido(Date dataAbertura, Date dataFecho, int estadoPedido) {
+    public Pedido() {
         
     }
     

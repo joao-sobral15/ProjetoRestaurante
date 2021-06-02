@@ -26,5 +26,23 @@ public class Doce extends Produto {
         
         this.caseiro = caseiro;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean isCaseiro() {
+        return caseiro;
+    }
+
+    public void setCaseiro(boolean caseiro) {
+        this.caseiro = caseiro;
+    }
+    
+    
     
 }
