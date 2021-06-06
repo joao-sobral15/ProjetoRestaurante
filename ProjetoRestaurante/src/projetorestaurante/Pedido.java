@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package projetorestaurante;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.ArrayList;
@@ -11,42 +13,63 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class Pedido {
+public class Pedido{
     
-    private Date dataAbertura;
-    private LocalTime dataFecho = LocalTime.now();
-    private boolean estadoPedido;
+    private LocalDateTime dataAbertura;
+    private LocalDateTime dataFecho;
+    private int estadoPedido;
+    private int nMesa;
+    private int totalPedido;
     ArrayList<Produto> produtosLista;
     
 
-    public Pedido(Date dataAbertura, int estadoPedido) {
+    public Pedido(int nMesa) {
         produtosLista = new ArrayList<Produto>();
-        this.dataAbertura = dataAbertura;
+        this.dataAbertura = LocalDateTime.now();
         this.dataFecho = null;
+        this.nMesa = nMesa;
+        this.totalPedido =0;
+       this.estadoPedido =1;
     }
 
-    public Date getDataAbertura() {
+    public LocalDateTime getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(Date dataAbertura) {
+    public void setDataAbertura(LocalDateTime dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
+    
+    public void alterarEstado()
+    {
+        if (estadoPedido ==1)
+        {
+            estadoPedido++;
+        }
+    }
 
-    public LocalTime getDataFecho() {
+    public LocalDateTime getDataFecho() {
         return dataFecho;
     }
 
-    public void setDataFecho(LocalTime dataFecho) {
+    public void setDataFecho(LocalDateTime dataFecho) {
         this.dataFecho = dataFecho;
     }
 
-    public boolean isEstadoPedido() {
+    public int getEstadoPedido() {
         return estadoPedido;
     }
 
-    public void setEstadoPedido(boolean estadoPedido) {
+    public void setEstadoPedido(int estadoPedido) {
         this.estadoPedido = estadoPedido;
+    }
+
+    public int getnMesa() {
+        return nMesa;
+    }
+
+    public void setnMesa(int nMesa) {
+        this.nMesa = nMesa;
     }
 
     public ArrayList<Produto> getProdutosLista() {
@@ -56,17 +79,20 @@ public class Pedido {
     public void setProdutosLista(ArrayList<Produto> produtosLista) {
         this.produtosLista = produtosLista;
     }
-    
-    
-    public void addProduto()
-    {
+
+    @Override
+    public String toString() {
         
+        String informacao = "";
+        
+        informacao += "Mesa" +nMesa +"\n";
+        informacao += "Data de Abertura:" +dataAbertura+"\n";
+        informacao += "Total do Pedido"+totalPedido+"\n";
+        
+        informacao += "Items do Pedido"+"\n";
+        informacao += produtosLista.toString();
+        return informacao;
     }
-    
-    
-    
-    
-    
     
     
 }
