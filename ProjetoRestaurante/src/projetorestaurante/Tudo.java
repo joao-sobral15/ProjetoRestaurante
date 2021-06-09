@@ -36,6 +36,30 @@ public class Tudo {
             Prato lasanha = new Prato("lasanha", 8, "De bacalhau");
             pratos.add(lasanha);
         }
+        
+        if(bebidas.size() == 0)
+        {
+            Bebida cocaCola = new Bebida("Coca-Cola", 2, 1, true);
+            bebidas.add(cocaCola);
+            Bebida sumol = new Bebida("Sumol de Ananás", 2, 1, true);
+            bebidas.add(sumol);
+        }
+        
+        if(snacks.size() == 0)
+        {
+            Snack pao = new Snack("Pão", 2, 6, false);
+            snacks.add(pao);
+            Snack manteiga = new Snack("Manteiga", 1, 1, false);
+            snacks.add(manteiga);
+        }
+        
+        if(sobremesas.size() == 0)
+        {
+            Doce babaCamelo = new Doce("Baba de Camelo", 2.5, "Leite condesado com natas", false);
+            sobremesas.add(babaCamelo);
+            Doce boloBolacha = new Doce("Bolo de Bolacha", 2.5, "Bolacha com café e natas", true);
+            sobremesas.add(boloBolacha);
+        }
        
     }
     
@@ -46,6 +70,21 @@ public class Tudo {
         for(Prato p: pratos)
         {
             System.out.println(p.toString());
+        }
+        
+        for(Bebida b: bebidas)
+        {
+            System.out.println(b.toString());
+        }
+        
+        for(Snack s: snacks)
+        {
+            System.out.println(s.toString());
+        }
+        
+        for(Doce d: sobremesas)
+        {
+            System.out.println(d.toString());
         }
     }
 
@@ -66,7 +105,71 @@ public class Tudo {
         opcao2 = sc2.nextInt();
        
         Pedido prato = new Pedido(opcao, pratos.get(opcao2).getPreco(), pratos.get(opcao2).getNomeProduto());
-        pedidos.add(prato); 
+        pedidos.add(prato);
+    }
+    
+    public void adicionarBebida(){
+        for(Bebida b: bebidas)
+        {
+            System.out.println(b.toString());
+        }
+        
+        int opcao, opcao2;
+        System.out.println(pedidos.size());
+        System.out.println("MESA A ADICIONAR: ");
+        Scanner sc = new Scanner(System.in);
+        opcao = sc.nextInt();
+
+        System.out.println("Produto a Adicionar: ");
+        Scanner sc2 = new Scanner(System.in);
+        opcao2 = sc2.nextInt();
+        
+        Pedido bebida = new Pedido(opcao, bebidas.get(opcao2).getPreco(), bebidas.get(opcao2).getNomeProduto());
+        pedidos.add(bebida);
+    }
+    
+    public void adicionarSnack()
+    {
+        for(Snack s: snacks)
+        {
+            System.out.println(s.toString());
+        }
+        
+        int opcao, opcao2;
+        System.out.println(pedidos.size());
+        System.out.println("MESA A ADICIONAR: ");
+        Scanner sc = new Scanner(System.in);
+        opcao = sc.nextInt();
+
+        System.out.println("Produto a Adicionar: ");
+        Scanner sc2 = new Scanner(System.in);
+        opcao2 = sc2.nextInt();
+        
+        Pedido snack = new Pedido(opcao, snacks.get(opcao2).getPreco(), snacks.get(opcao2).getNomeProduto());
+        pedidos.add(snack);
+        
+    }
+    
+    public void adicionarSobremesa()
+    {
+        for(Doce d: sobremesas)
+        {
+            System.out.println(d.toString());
+        }
+        
+        int opcao, opcao2;
+        System.out.println(pedidos.size());
+        System.out.println("MESA A ADICIONAR: ");
+        Scanner sc = new Scanner(System.in);
+        opcao = sc.nextInt();
+
+        System.out.println("Produto a Adicionar: ");
+        Scanner sc2 = new Scanner(System.in);
+        opcao2 = sc2.nextInt();
+        
+        Pedido doce = new Pedido(opcao, sobremesas.get(opcao2).getPreco(), sobremesas.get(opcao2).getNomeProduto());
+        pedidos.add(doce);
+        
     }
     
     public void adicionarItem()
@@ -89,7 +192,7 @@ public class Tudo {
                 {
                     adicionarPratoPrincipal();
                 }
-              /*  else if(opcao == 2)
+                else if(opcao == 2)
                 {
                     adicionarBebida();
 
@@ -100,16 +203,15 @@ public class Tudo {
                 }
                 else if(opcao ==4)
                 {
-                    break;
                     adicionarSobremesa();
-                }*/
-
-                    
+                }
+   
                 showMenu();
-        /*for(Pedido p: pedidos)
-        {
-            System.out.println(p.toString());
-        }*/
+        
+                for(Pedido p: pedidos)
+                {
+                    System.out.println(p.toString());
+                }
     }
     
     public void mostraMesas()

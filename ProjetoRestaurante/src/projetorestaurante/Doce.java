@@ -61,7 +61,7 @@ public class Doce extends Produto {
 
         if(caseiro == true)
         {
-            informacao += "Caseiro\n"
+            informacao += "Caseiro\n";
         }
         else 
         {
