@@ -41,14 +41,14 @@ public class Snack extends Produto {
         super.toString();
         String informacao = "";
         
-        informacao += "Quantidade:"+quantidade;
+        informacao += "Quantidade:"+quantidade+"\n";
         if(picante == false)
         {
-            informacao += "Não picante";
+            informacao += "Não picante\n";
         }
         else 
         {
-            informacao +="Picante";
+            informacao +="Picante\n";
         }
         
         return informacao;

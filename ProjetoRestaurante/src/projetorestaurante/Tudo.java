@@ -3,27 +3,18 @@ package projetorestaurante;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-//import projetorestaurante.Bebida;
-//import projetorestaurante.Mesa;
-////import projetorestaurante.Prato;
-//import projetorestaurante.ProjetoRestaurante;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author User
- */
 public class Tudo {
     
         ArrayList<Mesa> mesas = new ArrayList<Mesa>();
-        ArrayList<Prato> produtos = new ArrayList<Prato>();
-        ArrayList<Bebida> bebida = new ArrayList<Bebida>();
-        ProjetoRestaurante projeto = new ProjetoRestaurante();
+        ArrayList<Prato> pratos = new ArrayList<Prato>();
+        ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
+        ArrayList<Snack> snacks = new ArrayList<Snack>();
+        ArrayList<Doce> sobremesas = new ArrayList<Doce>();
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+        //ProjetoRestaurante projeto = new ProjetoRestaurante();
+        
         Mesa mesa1 = new Mesa(1, true);
         Mesa mesa2 = new Mesa(2, true);
         Mesa mesa3 = new Mesa(3, true);
@@ -37,45 +28,109 @@ public class Tudo {
     }
     
     public void criaProdutos()
-    {  
-        Prato bife = new Prato("bife", 9,"Com molho");
-        produtos.add(bife);
-        Prato lasanha = new Prato("lasanha", 8,"sem molho");
-        produtos.add(lasanha);
-        
-        Bebida cocaCola = new Bebida("Coca-Cola", 1,3,true);
-        bebida.add(cocaCola);
-        Bebida agua = new Bebida("Agua", 0.50,3,false);
-        bebida.add(agua);
-        
-        System.out.println("ENTRADAS:\n");
-        System.out.println(produtos.toString());
-        System.out.println("BEBIDAS::\n");
-        System.out.println(bebida.toString());
+    {
+        if(pratos.size() == 0)
+        {
+            Prato bife = new Prato("bife",5, "Bem passado");
+            pratos.add(bife);
+            Prato lasanha = new Prato("lasanha", 8, "De bacalhau");
+            pratos.add(lasanha);
+        }
+       
     }
     
-    public void AdicionarItem()
+    public void mostraProdutos()
     {
-        Pedido pedido = new Pedido(1);
+        System.out.println("Produtos: \n");
         
-       System.out.println(pedido.toString());
+        for(Prato p: pratos)
+        {
+            System.out.println(p.toString());
+        }
+    }
+
+    public void adicionarPratoPrincipal()
+    {
+        for(Prato p : pratos)
+        {
+           System.out.println(p.toString());
+         }
+        int opcao, opcao2;
+        System.out.println(pedidos.size());
+        System.out.println("MESA A ADICIONAR: ");
+        Scanner sc = new Scanner(System.in);
+        opcao = sc.nextInt();
+
+        System.out.println("Produto a Adicionar: ");
+        Scanner sc2 = new Scanner(System.in);
+        opcao2 = sc2.nextInt();
+       
+        Pedido prato = new Pedido(opcao, pratos.get(opcao2).getPreco(), pratos.get(opcao2).getNomeProduto());
+        pedidos.add(prato); 
+    }
+    
+    public void adicionarItem()
+    {  
+         //mostraProdutos();
+         int opcao, opcao2;
+
+                System.out.println("\n\n###           |  CATEGORIAS DE PRODUTOS A ADICIONAR###");
+		System.out.println("\n                |  =========================");
+                System.out.println("                  | 1 - Prato Principal             |");
+		System.out.println("                  | 2 - Bebidas                     |");
+		System.out.println("                  | 3 - Snacks                      |");
+                System.out.println("                  | 4 - Sobremesas                  |");
+		System.out.println("                  =========================\n");
+
+                Scanner sc = new Scanner(System.in);
+                opcao = sc.nextInt();
+
+                if (opcao == 1)
+                {
+                    adicionarPratoPrincipal();
+                }
+              /*  else if(opcao == 2)
+                {
+                    adicionarBebida();
+
+                }
+                else if(opcao ==3)
+                {
+                    adicionarSnack();
+                }
+                else if(opcao ==4)
+                {
+                    break;
+                    adicionarSobremesa();
+                }*/
+
+                    
+                showMenu();
+        /*for(Pedido p: pedidos)
+        {
+            System.out.println(p.toString());
+        }*/
     }
     
     public void mostraMesas()
     {
         int opcao;
-       // ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+       
+       //SE FOR A PRIMEIRA VEZ QUE INICIA O PROGRAMA, ELE CRIA AS MESAS
+       if(mesas.size() == 0)
+       {
         mesas.add(mesa1);
         mesas.add(mesa2);
         mesas.add(mesa3);
         mesas.add(mesa4);
-        
-         for(Mesa mesax: mesas)
+       }
+
+       
+        for(Mesa mesax: mesas)
         {
             System.out.println(mesax.toString());
            
         }
-        
                 System.out.println("\n");
                 System.out.println("ALTERAR DISPONIBILIDADE DE QUE MESA? ");
                 Scanner sc = new Scanner(System.in);
@@ -97,24 +152,23 @@ public class Tudo {
                 {
                     mesa4.alteraEstado();
                 }
-                
-                mostraMesas();
-        
+               showMenu();
     }
     
     
-     public  void ShowMenu()
+     public  void showMenu()
     {
-         int opcao = 0;
+        int opcao = 0;
 	do {
+            criaProdutos();
             clearScreen();
-		System.out.println("\n\n###             GESTÃO DO RESTAURANTE ###");
-		System.out.println("\n                  =========================");
+		System.out.println("\n\n###           |  GESTÃO DO RESTAURANTE ###");
+		System.out.println("\n                |  =========================");
 		System.out.println("                  | 1 - Produtos                    |");
                 System.out.println("                  | 2 - Solicitação de mesa         |");
-		System.out.println("                  | 3 - Adicionar Items a um pedido  |");
-		System.out.println("                    4 - Estado Pedido               |");
-		System.out.println("                    5 - Fechar Pedido               |");
+		System.out.println("                  | 3 - Adicionar Items a um pedido |");
+		System.out.println("                  | 4 - Estado Pedido               |");
+		System.out.println("                  | 5 - Fechar Pedido               |");
 		System.out.println("                  | 0 - Sair                        |");
 		System.out.println("                  =========================\n");
 
@@ -132,7 +186,7 @@ public class Tudo {
 			break;
                 case 3:
                     clearScreen();
-                    AdicionarItem();
+                    adicionarItem();
 		case 5:
 			break;
 		case 0:
@@ -143,6 +197,4 @@ public class Tudo {
 		}
 	} while (opcao != 0);
     }
-    
-    
 }

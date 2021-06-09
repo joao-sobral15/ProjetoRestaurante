@@ -14,7 +14,8 @@ public class Doce extends Produto {
     private String descricao;
     private boolean caseiro;
     
-    public Doce(String nomeProduto, float preco, float iva, String descricao, boolean caseiro) {
+    public Doce(String nomeProduto, double preco, String descricao, boolean caseiro) 
+    {
         super(nomeProduto, preco);
         
         if(descricao != null){
@@ -43,6 +44,31 @@ public class Doce extends Produto {
         this.caseiro = caseiro;
     }
     
-    
+        @Override
+         public String toString() 
+        {
+        String informacao ="";
+        
+        informacao += super.toString();
+        if(descricao != "")
+        {
+           informacao += "Descricao do Produto:"+descricao+ "\n";
+        }
+        else 
+        {
+            informacao += "Descricao do Produto: Sem descricao\n";
+        }
+
+        if(caseiro == true)
+        {
+            informacao += "Caseiro\n"
+        }
+        else 
+        {
+            informacao+= "Não caseiro\n";
+        }
+        
+        return informacao;
+    }
     
 }

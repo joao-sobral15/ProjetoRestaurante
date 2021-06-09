@@ -39,7 +39,7 @@ public class Prato extends Produto {
     public String toString() {
         String informacao ="";
         
-        super.toString();
+        informacao += super.toString();
         if(descricao != "")
         {
            informacao += "Descricao do Produto:"+descricao;

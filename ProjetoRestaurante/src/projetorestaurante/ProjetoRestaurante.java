@@ -18,6 +18,6 @@ public class ProjetoRestaurante {
   
     public static void main(String[] args) {
         Tudo tudo = new Tudo();
-        tudo.ShowMenu();
+        tudo.showMenu();
     }
 }

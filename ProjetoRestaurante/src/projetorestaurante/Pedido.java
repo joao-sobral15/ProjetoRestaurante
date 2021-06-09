@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package projetorestaurante;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,17 +21,16 @@ public class Pedido{
     private LocalDateTime dataFecho;
     private int estadoPedido;
     private int nMesa;
-    private int totalPedido;
-    ArrayList<Produto> produtosLista;
+    private double totalPedido;
+    //ArrayList<Produto> produtosLista;
     
 
-    public Pedido(int nMesa) {
-        produtosLista = new ArrayList<Produto>();
+    public Pedido(int nMesa, double preco, String nomeProduto) {
         this.dataAbertura = LocalDateTime.now();
         this.dataFecho = null;
         this.nMesa = nMesa;
-        this.totalPedido =0;
-       this.estadoPedido =1;
+        this.totalPedido  = preco;
+        this.estadoPedido =1;
     }
 
     public LocalDateTime getDataAbertura() {
@@ -47,6 +48,7 @@ public class Pedido{
             estadoPedido++;
         }
     }
+    
 
     public LocalDateTime getDataFecho() {
         return dataFecho;
@@ -72,14 +74,6 @@ public class Pedido{
         this.nMesa = nMesa;
     }
 
-    public ArrayList<Produto> getProdutosLista() {
-        return produtosLista;
-    }
-
-    public void setProdutosLista(ArrayList<Produto> produtosLista) {
-        this.produtosLista = produtosLista;
-    }
-
     @Override
     public String toString() {
         
@@ -88,11 +82,6 @@ public class Pedido{
         informacao += "Mesa" +nMesa +"\n";
         informacao += "Data de Abertura:" +dataAbertura+"\n";
         informacao += "Total do Pedido"+totalPedido+"\n";
-        
-        informacao += "Items do Pedido"+"\n";
-        informacao += produtosLista.toString();
         return informacao;
     }
-    
-    
 }

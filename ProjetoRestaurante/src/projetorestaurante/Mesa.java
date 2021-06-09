@@ -20,6 +20,7 @@ public class Mesa {
     public Mesa(int numeroMesa, boolean disponibilidade) {
         this.numeroMesa = numeroMesa;
         this.disponibilidade = disponibilidade;
+        pedido = new ArrayList<Pedido>();
     }
 
     public int getNumeroMesa() {
