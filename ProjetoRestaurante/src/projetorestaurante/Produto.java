@@ -11,22 +11,26 @@ package projetorestaurante;
  */
 public class Produto {
    
+    private static int sequencia = 0;
     private String nomeProduto;
     private double preco;
+    private int nPedido;
+     private static int contaNumeros = 0;
+    
     
     public Produto(String nomeProduto, double preco)
     {
         if (nomeProduto == "")
         {
-            this.nomeProduto = "";
+            this.nomeProduto = "Sem Nome";
         }
         else
         {
             this.nomeProduto = nomeProduto;
         }
-        
             this.preco = preco;
-        
+            
+        this.nPedido = contaNumeros++;
     }
 
     public String getNomeProduto() {
@@ -49,10 +53,12 @@ public class Produto {
     public String toString() {
         
         String informacao = "";
-        
+        informacao += "-------------------------------\n";
+        informacao += "Id do Produto"+nPedido+"\n";
         informacao += "Nome do Produto:"+nomeProduto+"\n";
         informacao += "Preço:"+preco+"\n";
         informacao += "\n";
+        informacao += "-------------------------------\n";
         
         return informacao;
     }

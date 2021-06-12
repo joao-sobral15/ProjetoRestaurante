@@ -17,6 +17,7 @@ import java.io.IOException;
 public class ProjetoRestaurante {
   
     public static void main(String[] args) {
+        //PROGRAMA CONCENTRADO NO FICHEIRO CLASSE "TUDO"
         Tudo tudo = new Tudo();
         tudo.showMenu();
     }

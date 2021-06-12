@@ -10,22 +10,11 @@ package projetorestaurante;
  * @author danie
  */
 public class Snack extends Produto {
-    
-    private int quantidade;
     private boolean picante;
     
-    public Snack(String nomeProduto, float preco, int quantidade, boolean picante) {
+    public Snack(String nomeProduto, float preco, boolean picante) {
         super(nomeProduto, preco);
-        this.quantidade = quantidade;
         this.picante = picante;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
     }
 
     public boolean isPicante() {
@@ -38,10 +27,10 @@ public class Snack extends Produto {
     
        @Override
     public String toString() {
-        super.toString();
-        String informacao = "";
         
-        informacao += "Quantidade:"+quantidade+"\n";
+        String informacao = "";
+        informacao += "-------------------------------\n";
+        informacao += super.toString();
         if(picante == false)
         {
             informacao += "Não picante\n";
@@ -50,9 +39,7 @@ public class Snack extends Produto {
         {
             informacao +="Picante\n";
         }
-        
+        informacao += "-------------------------------\n";
         return informacao;
     }
-    
-    
 }

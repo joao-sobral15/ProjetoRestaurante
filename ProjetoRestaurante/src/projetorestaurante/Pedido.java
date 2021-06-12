@@ -78,10 +78,23 @@ public class Pedido{
     public String toString() {
         
         String informacao = "";
-        
+        informacao += "-------------------------------";
         informacao += "Mesa" +nMesa +"\n";
         informacao += "Data de Abertura:" +dataAbertura+"\n";
+        if(estadoPedido == 1)
+        {
+         informacao += "Estado do pedido: em preparação \n";   
+        }
+        else if(estadoPedido == 2)
+        {
+            informacao += "Estado do Pedido: Entregue \n";
+        }
+        else
+        {
+            informacao += "Estado do Pedido: Fechado \n";
+        }
         informacao += "Total do Pedido"+totalPedido+"\n";
+        informacao += "-------------------------------";
         return informacao;
     }
 }

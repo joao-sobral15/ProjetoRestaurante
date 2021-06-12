@@ -1,12 +1,11 @@
 package projetorestaurante;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Tudo {
     
+    //ARRAYLISTS PARA TODOS OS TIPOS DE PRODUTOS E MESAS EXISTENTES NO RESTAURANTE
         ArrayList<Mesa> mesas = new ArrayList<Mesa>();
         ArrayList<Prato> pratos = new ArrayList<Prato>();
         ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
@@ -21,12 +20,14 @@ public class Tudo {
         Mesa mesa4 = new Mesa(4, true);
         
    
-    public  void clearScreen() 
-    {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();
+    //FUNÇÃO CLS QUE LIMPA O ECRÃ
+    public  void clearScreen()
+    {
+       /* System.out.print("\033[H\033[2J");  
+        System.out.flush();*/
     }
     
+    //FUNÇÃO QUE CRIA OS PRODUTOS DEFAULT NO INICIO DO PROGRAMA
     public void criaProdutos()
     {
         if(pratos.size() == 0)
@@ -47,9 +48,9 @@ public class Tudo {
         
         if(snacks.size() == 0)
         {
-            Snack pao = new Snack("Pão", 2, 6, false);
+            Snack pao = new Snack("Pão", 6, false);
             snacks.add(pao);
-            Snack manteiga = new Snack("Manteiga", 1, 1, false);
+            Snack manteiga = new Snack("Manteiga", 1, false);
             snacks.add(manteiga);
         }
         
@@ -63,51 +64,71 @@ public class Tudo {
        
     }
     
+    //FUNÇÃO RESPONSAVEL PELA MOSTRAGEM DOS PRODUTOS NO SISTEMA
     public void mostraProdutos()
     {
-        System.out.println("Produtos: \n");
+         System.out.println("----------------------------\n");
+        System.out.println("PRATOS PRINCIPAIS\n");
         
         for(Prato p: pratos)
         {
             System.out.println(p.toString());
         }
         
+        System.out.println("----------------------------\n");
+        System.out.println("BEBIDAS:\n");
         for(Bebida b: bebidas)
         {
             System.out.println(b.toString());
         }
-        
+        System.out.println("----------------------------\n");
+        System.out.println("SNACKS:\n");
         for(Snack s: snacks)
         {
             System.out.println(s.toString());
         }
-        
+        System.out.println("----------------------------\n");
+        System.out.println("SOBREMESAS:\n");
         for(Doce d: sobremesas)
         {
             System.out.println(d.toString());
         }
     }
+    
+    //ESTAVA  A FAZER A ALTERAÇÃO DO PEDIDO
 
+    //FUNÇÃO QUE ADICIONAR PRATOS PRINCIPAIS AO PEDIDO DA MESA
     public void adicionarPratoPrincipal()
     {
-        for(Prato p : pratos)
-        {
-           System.out.println(p.toString());
-         }
-        int opcao, opcao2;
-        System.out.println(pedidos.size());
-        System.out.println("MESA A ADICIONAR: ");
-        Scanner sc = new Scanner(System.in);
-        opcao = sc.nextInt();
+            for(Prato p : pratos)
+            {
+               System.out.println(p.toString());
+             }
+            int opcao, opcao2;
+            System.out.println(pedidos.size());
+            System.out.println("MESA A ADICIONAR: ");
+            Scanner sc = new Scanner(System.in);
+            opcao = sc.nextInt();
 
-        System.out.println("Produto a Adicionar: ");
-        Scanner sc2 = new Scanner(System.in);
-        opcao2 = sc2.nextInt();
-       
-        Pedido prato = new Pedido(opcao, pratos.get(opcao2).getPreco(), pratos.get(opcao2).getNomeProduto());
-        pedidos.add(prato);
+        //VERIFICA SE A MESA ESTA OCUPADA, SE ESTIVER ADICIONA O PEDIDO A MESA
+           if(mesas.get(opcao-1).isDisponibilidade() == false)
+        {
+            System.out.println("Produto a Adicionar: ");
+            Scanner sc2 = new Scanner(System.in);
+            opcao2 = sc2.nextInt();
+
+             Pedido prato = new Pedido(opcao, pratos.get(opcao2).getPreco(), pratos.get(opcao2).getNomeProduto());
+             pedidos.add(prato);
+        }
+        else 
+        {
+            System.out.println("MESA NAO ABERTA");
+            showMenu();
+        }
+        
     }
     
+    //FUNÇÃO QUE ADICIONAR BEBIDAS AO PEDIDO DA MESA
     public void adicionarBebida(){
         for(Bebida b: bebidas)
         {
@@ -119,15 +140,25 @@ public class Tudo {
         System.out.println("MESA A ADICIONAR: ");
         Scanner sc = new Scanner(System.in);
         opcao = sc.nextInt();
-
-        System.out.println("Produto a Adicionar: ");
-        Scanner sc2 = new Scanner(System.in);
-        opcao2 = sc2.nextInt();
         
-        Pedido bebida = new Pedido(opcao, bebidas.get(opcao2).getPreco(), bebidas.get(opcao2).getNomeProduto());
-        pedidos.add(bebida);
+         if(mesas.get(opcao-1).isDisponibilidade() == false)
+        {
+            System.out.println("Produto a Adicionar: ");
+            Scanner sc2 = new Scanner(System.in);
+            opcao2 = sc2.nextInt();
+
+            Pedido bebida = new Pedido(opcao, bebidas.get(opcao2).getPreco(), bebidas.get(opcao2).getNomeProduto());
+            pedidos.add(bebida);
+        }
+          else 
+         {
+             System.out.println("MESA NAO ABERTA");
+             showMenu();
+         }
+        
     }
     
+    //FUNÇÃO QUE ADICIONA SNACKS AO PEDIDO DA MESA
     public void adicionarSnack()
     {
         for(Snack s: snacks)
@@ -140,16 +171,23 @@ public class Tudo {
         System.out.println("MESA A ADICIONAR: ");
         Scanner sc = new Scanner(System.in);
         opcao = sc.nextInt();
-
-        System.out.println("Produto a Adicionar: ");
-        Scanner sc2 = new Scanner(System.in);
-        opcao2 = sc2.nextInt();
+         if(mesas.get(opcao-1).isDisponibilidade() == false)
+        {
+             System.out.println("Produto a Adicionar: ");
+             Scanner sc2 = new Scanner(System.in);
+             opcao2 = sc2.nextInt();
         
-        Pedido snack = new Pedido(opcao, snacks.get(opcao2).getPreco(), snacks.get(opcao2).getNomeProduto());
-        pedidos.add(snack);
-        
+            Pedido snack = new Pedido(opcao, snacks.get(opcao2).getPreco(), snacks.get(opcao2).getNomeProduto());
+            pedidos.add(snack);
+        }
+         else 
+         {
+             System.out.println("MESA NAO ABERTA");
+             showMenu();
+         }
     }
     
+    //FUNÇÃO QUE ADICIONA SOBREMESAS AO PEDIDO DA MESA
     public void adicionarSobremesa()
     {
         for(Doce d: sobremesas)
@@ -162,14 +200,24 @@ public class Tudo {
         System.out.println("MESA A ADICIONAR: ");
         Scanner sc = new Scanner(System.in);
         opcao = sc.nextInt();
-
-        System.out.println("Produto a Adicionar: ");
-        Scanner sc2 = new Scanner(System.in);
-        opcao2 = sc2.nextInt();
+        
+        //VERIFICA SE A MESA ESTÁ OCUPADA, SE ESTIVER FAZ O PEDIDO PARA A MESA EM QUESTÃO. SE NAO MOSTRA MENSAGEM DE ERROE VOLTA
+        //AO MENU PRINCIPAL
+        
+        if(mesas.get(opcao-1).isDisponibilidade() == false)
+        {
+         System.out.println("Produto a Adicionar: ");
+         Scanner sc2 = new Scanner(System.in);
+         opcao2 = sc2.nextInt();
         
         Pedido doce = new Pedido(opcao, sobremesas.get(opcao2).getPreco(), sobremesas.get(opcao2).getNomeProduto());
         pedidos.add(doce);
-        
+        }
+        else
+        {
+             System.out.println("MESA NAO ABERTA");
+             showMenu();
+        }
     }
     
     public void adicionarItem()
@@ -233,28 +281,73 @@ public class Tudo {
             System.out.println(mesax.toString());
            
         }
-                System.out.println("\n");
-                System.out.println("ALTERAR DISPONIBILIDADE DE QUE MESA? ");
-                Scanner sc = new Scanner(System.in);
-                opcao = sc.nextInt();
+            System.out.println("\n");
+            System.out.println("ALTERAR DISPONIBILIDADE DE QUE MESA? ");
+            Scanner sc = new Scanner(System.in);
+            opcao = sc.nextInt();
+
+
+            if(opcao < mesas.size())
+            {
+                mesas.get(opcao-1).alteraEstado();
+            }
+            else
+            {
+                System.out.println("Opcao invalida");
+                mostraMesas();
+            }
+           showMenu();
+    }
+    
+    public void estadoPedido()
+    {
+        if(pedidos.size() ==0)
+        {
+            int opcao;
+            do{
+            System.out.println("SEM PEDIDOS A APRESNTAR: CLICAR 0 PARA SAIR");
+            Scanner sc = new Scanner(System.in);
+            opcao = sc.nextInt();
+            
+            }
+            while(opcao != 0);
+            showMenu();
+        }
+        else 
+        {
+            for(Pedido p: pedidos)
+            {
+                System.out.println(p.toString());
+            }
+                int opcao2;
                 
-                if(opcao == 1)
-                {
-                    mesa1.alteraEstado();
-                }
-                else if (opcao ==2)
-                {
-                    mesa2.alteraEstado();
-                }
-                else if (opcao ==3)
-                {
-                    mesa3.alteraEstado();
-                }
-                else
-                {
-                    mesa4.alteraEstado();
-                }
-               showMenu();
+          
+               System.out.println("INSERIR NUMERO DO PEDIDO PARA ALTERAR ESTADO OU CLICAR '0' PARA VOLTAR");
+               Scanner sc = new Scanner(System.in);
+               opcao2 = sc.nextInt();
+               
+               if(opcao2 !=0 || opcao2 <= pedidos.size())
+               {
+                   pedidos.get(opcao2-1).alterarEstado();
+                   showMenu();
+               }
+               else
+               {
+                System.out.println("OPÇÃO INVALIDA!!");
+                showMenu();
+               }
+        }
+    }
+    
+    public void fecharPedido()
+    {
+        for(Pedido p: pedidos)
+        {
+            if(p.getEstadoPedido() == 2)
+            {
+                System.out.println(p.toString());
+            }
+        }
     }
     
     
@@ -280,7 +373,7 @@ public class Tudo {
 		switch (opcao) {
 		case 1:
                     clearScreen();
-                    criaProdutos();
+                    mostraProdutos();
 			break;
 		case 2:
                     clearScreen();
@@ -289,6 +382,9 @@ public class Tudo {
                 case 3:
                     clearScreen();
                     adicionarItem();
+                case 4:
+                    clearScreen();
+                    estadoPedido();
 		case 5:
 			break;
 		case 0:

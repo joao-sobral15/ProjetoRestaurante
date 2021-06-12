@@ -38,7 +38,7 @@ public class Prato extends Produto {
     @Override
     public String toString() {
         String informacao ="";
-        
+        informacao += "-------------------------------\n";
         informacao += super.toString();
         if(descricao != "")
         {
@@ -48,7 +48,7 @@ public class Prato extends Produto {
         {
             informacao += "Descricao do Produto: Sem descricao";
         }
-        
+        informacao += "-------------------------------\n";
         return informacao;
     }
       

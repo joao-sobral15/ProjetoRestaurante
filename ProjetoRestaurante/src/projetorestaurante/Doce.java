@@ -44,11 +44,11 @@ public class Doce extends Produto {
         this.caseiro = caseiro;
     }
     
-        @Override
-         public String toString() 
+    @Override
+    public String toString() 
         {
         String informacao ="";
-        
+        informacao += "-------------------------------\n";
         informacao += super.toString();
         if(descricao != "")
         {
@@ -67,7 +67,7 @@ public class Doce extends Produto {
         {
             informacao+= "Não caseiro\n";
         }
-        
+        informacao += "-------------------------------\n";
         return informacao;
     }
     
