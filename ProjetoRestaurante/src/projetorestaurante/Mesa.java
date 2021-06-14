@@ -15,12 +15,10 @@ public class Mesa {
     
     private int numeroMesa;
     private boolean disponibilidade;
-    ArrayList<Pedido> pedido = new ArrayList<Pedido>();
 
     public Mesa(int numeroMesa, boolean disponibilidade) {
         this.numeroMesa = numeroMesa;
         this.disponibilidade = disponibilidade;
-        pedido = new ArrayList<Pedido>();
     }
 
     public int getNumeroMesa() {

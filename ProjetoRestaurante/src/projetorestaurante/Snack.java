@@ -29,7 +29,7 @@ public class Snack extends Produto {
     public String toString() {
         
         String informacao = "";
-        informacao += "-------------------------------\n";
+       // informacao += "-------------------------------\n";
         informacao += super.toString();
         if(picante == false)
         {
@@ -39,7 +39,7 @@ public class Snack extends Produto {
         {
             informacao +="Picante\n";
         }
-        informacao += "-------------------------------\n";
+        //informacao += "-------------------------------\n";
         return informacao;
     }
 }

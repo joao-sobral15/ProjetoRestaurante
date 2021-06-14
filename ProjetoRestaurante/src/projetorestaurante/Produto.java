@@ -10,12 +10,11 @@ package projetorestaurante;
  * @author User
  */
 public class Produto {
-   
-    private static int sequencia = 0;
+    
     private String nomeProduto;
     private double preco;
     private int nPedido;
-     private static int contaNumeros = 0;
+    private static int contaNumeros = 0;
     
     
     public Produto(String nomeProduto, double preco)
@@ -54,11 +53,11 @@ public class Produto {
         
         String informacao = "";
         informacao += "-------------------------------\n";
-        informacao += "Id do Produto"+nPedido+"\n";
+        informacao += "Id do Produto "+nPedido+"\n";
         informacao += "Nome do Produto:"+nomeProduto+"\n";
-        informacao += "Preço:"+preco+"\n";
+        informacao += "Preço:"+preco+" euros\n";
         informacao += "\n";
-        informacao += "-------------------------------\n";
+        //informacao += "-------------------------------\n";
         
         return informacao;
     }

@@ -47,12 +47,17 @@ public class Bebida extends Produto {
     public String toString() {
       
         String informacao = "";
-        informacao += "-------------------------------\n";
         informacao +=   super.toString() +"\n";
-        informacao += "Capacidade:"+capacidade +"\n";
-        informacao += "Referencia"+referencia+ "\n";
-        informacao += "-------------------------------\n";
-        
+        informacao += "Capacidade:"+capacidade +" ml\n";
+        if(referencia == true)
+        {
+            informacao += "Alcoolica: Sim\n";
+        }
+        else 
+        {
+            informacao += "Alcoolica: Não\n";
+        }
+       
         return informacao;
     }
     

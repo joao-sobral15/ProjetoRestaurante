@@ -38,17 +38,17 @@ public class Prato extends Produto {
     @Override
     public String toString() {
         String informacao ="";
-        informacao += "-------------------------------\n";
+       // informacao += "-------------------------------\n";
         informacao += super.toString();
         if(descricao != "")
         {
-           informacao += "Descricao do Produto:"+descricao;
+           informacao += "Descricao do Produto:"+descricao +"\n";
         }
         else 
         {
             informacao += "Descricao do Produto: Sem descricao";
         }
-        informacao += "-------------------------------\n";
+        //informacao += "-------------------------------\n";
         return informacao;
     }
       

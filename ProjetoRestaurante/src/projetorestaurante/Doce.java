@@ -48,7 +48,6 @@ public class Doce extends Produto {
     public String toString() 
         {
         String informacao ="";
-        informacao += "-------------------------------\n";
         informacao += super.toString();
         if(descricao != "")
         {
@@ -67,7 +66,7 @@ public class Doce extends Produto {
         {
             informacao+= "Não caseiro\n";
         }
-        informacao += "-------------------------------\n";
+        //informacao += "-------------------------------\n";
         return informacao;
     }
     

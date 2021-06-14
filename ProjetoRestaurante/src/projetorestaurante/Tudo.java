@@ -12,9 +12,10 @@ public class Tudo {
         ArrayList<Snack> snacks = new ArrayList<Snack>();
         ArrayList<Doce> sobremesas = new ArrayList<Doce>();
         ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-        //ProjetoRestaurante projeto = new ProjetoRestaurante();
         
-        Mesa mesa1 = new Mesa(1, true);
+        
+        //MESAS CRIADAS E INICIADAS TODAS COMO DISPONIVEIS PARA SEREM OCUPADAS
+        Mesa mesa1 = new Mesa(1, false);
         Mesa mesa2 = new Mesa(2, true);
         Mesa mesa3 = new Mesa(3, true);
         Mesa mesa4 = new Mesa(4, true);
@@ -23,13 +24,30 @@ public class Tudo {
     //FUNÇÃO CLS QUE LIMPA O ECRÃ
     public  void clearScreen()
     {
-       /* System.out.print("\033[H\033[2J");  
-        System.out.flush();*/
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    }
+    
+    //FUNÇÃO DE ERRO QUANDO ALGUEM INSERE UM PRODUTO INVALIDO
+    public void erroProduto()
+    {
+         System.out.println("PRODUTO INVALIDO");
+         showMenu();
+    }
+    
+    //FUNÇÃO ERRO DE QUANDO ALGUEM INSERE UMA MESA NAO DISPONIVEL PARA FAZER PEDIDO 
+    //OU UMA MESA NÃO EXISTENTE NO RESTAURANTE
+    public void erroMesa()
+    {
+         System.out.println("MESA NAO DISPONIVEL OU NÃO EXISTENTE");
+         showMenu();
     }
     
     //FUNÇÃO QUE CRIA OS PRODUTOS DEFAULT NO INICIO DO PROGRAMA
     public void criaProdutos()
     {
+        //CASO O PROGRAMA JA ESTEJA EM RUN JA NAO SERÃO EXECUTADOS ESTES CODIGOS PORQUE 
+        //O ARRAYLIST JA SE ENCONTRA PREENCHIDO
         if(pratos.size() == 0)
         {
             Prato bife = new Prato("bife",5, "Bem passado");
@@ -67,7 +85,7 @@ public class Tudo {
     //FUNÇÃO RESPONSAVEL PELA MOSTRAGEM DOS PRODUTOS NO SISTEMA
     public void mostraProdutos()
     {
-         System.out.println("----------------------------\n");
+         
         System.out.println("PRATOS PRINCIPAIS\n");
         
         for(Prato p: pratos)
@@ -75,19 +93,19 @@ public class Tudo {
             System.out.println(p.toString());
         }
         
-        System.out.println("----------------------------\n");
+       
         System.out.println("BEBIDAS:\n");
         for(Bebida b: bebidas)
         {
             System.out.println(b.toString());
         }
-        System.out.println("----------------------------\n");
+        
         System.out.println("SNACKS:\n");
         for(Snack s: snacks)
         {
             System.out.println(s.toString());
         }
-        System.out.println("----------------------------\n");
+        
         System.out.println("SOBREMESAS:\n");
         for(Doce d: sobremesas)
         {
@@ -95,8 +113,6 @@ public class Tudo {
         }
     }
     
-    //ESTAVA  A FAZER A ALTERAÇÃO DO PEDIDO
-
     //FUNÇÃO QUE ADICIONAR PRATOS PRINCIPAIS AO PEDIDO DA MESA
     public void adicionarPratoPrincipal()
     {
@@ -104,6 +120,7 @@ public class Tudo {
             {
                System.out.println(p.toString());
              }
+            
             int opcao, opcao2;
             System.out.println(pedidos.size());
             System.out.println("MESA A ADICIONAR: ");
@@ -111,19 +128,25 @@ public class Tudo {
             opcao = sc.nextInt();
 
         //VERIFICA SE A MESA ESTA OCUPADA, SE ESTIVER ADICIONA O PEDIDO A MESA
-           if(mesas.get(opcao-1).isDisponibilidade() == false)
+        if(mesas.get(opcao-1).isDisponibilidade() == false)
         {
             System.out.println("Produto a Adicionar: ");
             Scanner sc2 = new Scanner(System.in);
             opcao2 = sc2.nextInt();
-
+            
+            if(opcao2>=0 || opcao2< pratos.size())
+            {
              Pedido prato = new Pedido(opcao, pratos.get(opcao2).getPreco(), pratos.get(opcao2).getNomeProduto());
-             pedidos.add(prato);
+             pedidos.add(prato);   
+            }
+            else
+            {
+                erroProduto();  
+            }
         }
         else 
         {
-            System.out.println("MESA NAO ABERTA");
-            showMenu();
+            erroMesa();
         }
         
     }
@@ -146,14 +169,22 @@ public class Tudo {
             System.out.println("Produto a Adicionar: ");
             Scanner sc2 = new Scanner(System.in);
             opcao2 = sc2.nextInt();
-
+            
+            //SE A 'OPCAO2' FOR MENOR QUE 0 OU MAIOR QUE O TAMANHO DO 'ARRAYLIST PEDIDOS O USER É REDIRECIONADO PARA O 
+            //MENU INICIAL E É MOSTRADA UMA MENSAGEM DE ERRO
+            if(opcao2>=0 || opcao2<= bebidas.size())
+            {
             Pedido bebida = new Pedido(opcao, bebidas.get(opcao2).getPreco(), bebidas.get(opcao2).getNomeProduto());
             pedidos.add(bebida);
+            }
+            else
+            {
+                erroProduto();
+            }
         }
           else 
          {
-             System.out.println("MESA NAO ABERTA");
-             showMenu();
+             erroMesa();
          }
         
     }
@@ -177,13 +208,21 @@ public class Tudo {
              Scanner sc2 = new Scanner(System.in);
              opcao2 = sc2.nextInt();
         
+             //SE A 'OPCAO2' FOR MENOR QUE 0 OU MAIOR QUE O TAMANHO DO 'ARRAYLIST PEDIDOS O USER É REDIRECIONADO PARA O 
+            //MENU INICIAL E É MOSTRADA UMA MENSAGEM DE ERRO
+            if(opcao2>=0 || opcao2<= snacks.size())
+            {
             Pedido snack = new Pedido(opcao, snacks.get(opcao2).getPreco(), snacks.get(opcao2).getNomeProduto());
             pedidos.add(snack);
+            }
+            else
+            {
+                erroProduto();
+            }
         }
          else 
          {
-             System.out.println("MESA NAO ABERTA");
-             showMenu();
+             erroMesa();
          }
     }
     
@@ -210,8 +249,17 @@ public class Tudo {
          Scanner sc2 = new Scanner(System.in);
          opcao2 = sc2.nextInt();
         
-        Pedido doce = new Pedido(opcao, sobremesas.get(opcao2).getPreco(), sobremesas.get(opcao2).getNomeProduto());
-        pedidos.add(doce);
+         //SE A 'OPCAO2' FOR MENOR QUE 0 OU MAIOR QUE O TAMANHO DO 'ARRAYLIST PEDIDOS O USER É REDIRECIONADO PARA O 
+            //MENU INICIAL E É MOSTRADA UMA MENSAGEM DE ERRO
+             if(opcao2>=0 || opcao2<=sobremesas.size())
+             {
+                Pedido doce = new Pedido(opcao, sobremesas.get(opcao2).getPreco(), sobremesas.get(opcao2).getNomeProduto());
+                pedidos.add(doce);
+             }
+             else
+             {
+                 erroProduto();
+             }
         }
         else
         {
@@ -220,10 +268,11 @@ public class Tudo {
         }
     }
     
+    //FUNÇÃO ONDE O USER ESCOLHE QUE TIPO DE PRODUTO VAI ADICIONAR AO PEDIDO
     public void adicionarItem()
     {  
          //mostraProdutos();
-         int opcao, opcao2;
+         int opcao;
 
                 System.out.println("\n\n###           |  CATEGORIAS DE PRODUTOS A ADICIONAR###");
 		System.out.println("\n                |  =========================");
@@ -262,11 +311,9 @@ public class Tudo {
                 }
     }
     
-    public void mostraMesas()
+    public void criaMesas()
     {
-        int opcao;
-       
-       //SE FOR A PRIMEIRA VEZ QUE INICIA O PROGRAMA, ELE CRIA AS MESAS
+      //SE FOR A PRIMEIRA VEZ QUE INICIA O PROGRAMA, ELE CRIA AS MESAS
        if(mesas.size() == 0)
        {
         mesas.add(mesa1);
@@ -274,8 +321,13 @@ public class Tudo {
         mesas.add(mesa3);
         mesas.add(mesa4);
        }
-
-       
+    }
+    
+    //FUNÇÃO QUE MOSTRA AS MESAS DISPONIVEIS E A SUA DISPONIBILIDADE ATUAK
+    //É POSSIVEL TAMBEM AQUI ALTERAR A DISPONIBILIDADE DA MESA
+    public void mostraMesas()
+    {
+        int opcao;       
         for(Mesa mesax: mesas)
         {
             System.out.println(mesax.toString());
@@ -348,24 +400,55 @@ public class Tudo {
                 System.out.println(p.toString());
             }
         }
+        
+        int opcao;
+        System.out.println("QUAL PEDIDO DESEJA FECHAR?");
+        Scanner sc = new Scanner(System.in);
+        opcao = sc.nextInt();
+        
+        if(pedidos.get(opcao-1).getEstadoPedido() == 2)
+        {
+            pedidos.get(opcao-1).alterarEstado();
+            showMenu();
+        }
+        else
+        {
+             System.out.println("OPCAO INVALIDA");
+             showMenu();
+        }
     }
     
+    public void historicoPedidos()
+    {
+        
+         for(Pedido p: pedidos)
+        {
+            if(p.getEstadoPedido() ==3)
+            {
+              System.out.println(pedidos.toString());   
+            }
+        }
+    }
     
-     public  void showMenu()
+    //FUNÇÃO ONDE ESTÁ CONCENTRADO O MEU PRINICIPAL EM LOOP. PARA FECHAR O PROGRAMA TEM SE QUE ESTAR NO MEU PRINCIPAL E PREMIR A TECLA 0
+    //CASO O UTILIZADOR CLIQUE EM UMA OPÇÃO INVÁLIDA SERÁ MOSTRADA UMA MENSAGEM DE ERRO  
+    public  void showMenu()
     {
         int opcao = 0;
 	do {
             criaProdutos();
+            criaMesas();
             clearScreen();
-		System.out.println("\n\n###           |  GESTÃO DO RESTAURANTE ###");
-		System.out.println("\n                |  =========================");
-		System.out.println("                  | 1 - Produtos                    |");
-                System.out.println("                  | 2 - Solicitação de mesa         |");
-		System.out.println("                  | 3 - Adicionar Items a um pedido |");
-		System.out.println("                  | 4 - Estado Pedido               |");
-		System.out.println("                  | 5 - Fechar Pedido               |");
-		System.out.println("                  | 0 - Sair                        |");
-		System.out.println("                  =========================\n");
+		System.out.println("\n\n###           |### GESTÃO DO RESTAURANTE ###");
+		System.out.println("\n                |************************************");
+		System.out.println("                  | 1 - Produtos                        |");
+                System.out.println("                  | 2 - Solicitação de mesa             |");
+		System.out.println("                  | 3 - Novo Pedido                     |");
+		System.out.println("                  | 4 - Estado Pedido                   |");
+		System.out.println("                  | 5 - Fechar Pedido                   |");
+                System.out.println("                  | 6 - Histórico de pedidos fechados   |");
+		System.out.println("                  | 0 - Sair                            |");
+		System.out.println("                  **************************************\n");
 
 		Scanner sc = new Scanner(System.in);
                 opcao = sc.nextInt();
@@ -386,7 +469,13 @@ public class Tudo {
                     clearScreen();
                     estadoPedido();
 		case 5:
+                    clearScreen();
+                    fecharPedido();
 			break;
+                case 6:
+                    clearScreen();
+                    historicoPedidos();
+                    break;
 		case 0:
 			break;
 		default:

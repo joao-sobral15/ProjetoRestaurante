@@ -43,9 +43,10 @@ public class Pedido{
     
     public void alterarEstado()
     {
-        if (estadoPedido ==1)
-        {
             estadoPedido++;
+        if (estadoPedido == 3)
+        {
+            dataFecho = LocalDateTime.now();
         }
     }
     
@@ -94,6 +95,7 @@ public class Pedido{
             informacao += "Estado do Pedido: Fechado \n";
         }
         informacao += "Total do Pedido"+totalPedido+"\n";
+        informacao += "Hora de fecho"+dataFecho+"\n";
         informacao += "-------------------------------";
         return informacao;
     }
